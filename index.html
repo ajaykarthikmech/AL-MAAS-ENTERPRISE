@@ -301,7 +301,7 @@ Login
   circle.prog{fill:none;stroke-width:8;stroke-linecap:round;transform:rotate(-90deg);transform-origin:40px 40px;transition:stroke-dashoffset .8s ease}
 </style>
 
-<div class="shell">
+<div class="shell" id="dashboard">
   <!-- SIDEBAR -->
   <div class="sidebar">
     <div class="logo-area">
@@ -958,15 +958,27 @@ Login
   }
 
   document.getElementById('ai-input').addEventListener('keydown',e=>{if(e.key==='Enter')sendMsg()});
-function logout() {
+function logout(){
 
-  if(confirm("Are you sure you want to logout?")){
+  if(confirm(
+    "Are you sure you want to logout?"
+  )){
 
-    localStorage.removeItem("loggedIn");
+    localStorage.removeItem(
+      "loggedIn"
+    );
 
-    location.reload();
+    document.getElementById(
+      "dashboard"
+    ).style.display = "none";
+
+    document.getElementById(
+      "loginModal"
+    ).style.display = "flex";
 
   }
+
+}
 
 }
 function login(){
@@ -982,10 +994,9 @@ function login(){
     pass === "AdminALH2"
   ){
 
-    localStorage.setItem(
-      "loggedIn",
-      "true"
-    );
+    document.getElementById(
+  "dashboard"
+).style.display = "flex";
 
     document.getElementById(
       "loginModal"
@@ -1003,10 +1014,13 @@ function login(){
 }
 
 if(
-  localStorage.getItem(
-    "loggedIn"
-  ) !== "true"
+  localStorage.getItem("loggedIn")
+  !== "true"
 ){
+
+  document.getElementById(
+    "dashboard"
+  ).style.display = "none";
 
   document.getElementById(
     "loginModal"
