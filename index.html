@@ -908,6 +908,14 @@
 
   document.getElementById('ai-input').addEventListener('keydown',e=>{if(e.key==='Enter')sendMsg()});
 function logout() {
-  alert("Logged out successfully");
+
+  if(confirm("Are you sure you want to logout?")){
+
+    localStorage.removeItem("loggedIn");
+
+    location.reload();
+
+  }
+
 }
 </script>
