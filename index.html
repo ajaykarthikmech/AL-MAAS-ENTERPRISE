@@ -5,6 +5,57 @@
   <title>AL-MAAS</title>
   <link rel="icon" href="favicon.ico">
 </head>
+<div id="loginModal" style="
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.85);
+display:none;
+justify-content:center;
+align-items:center;
+z-index:99999;
+">
+
+<div style="
+width:380px;
+background:#111520;
+padding:30px;
+border-radius:16px;
+border:1px solid rgba(255,255,255,.1);
+">
+
+<h2 style="margin-bottom:20px;">
+AL-MAAS Login
+</h2>
+
+<input
+id="username"
+placeholder="Username"
+style="width:100%;padding:12px;margin-bottom:10px;"
+>
+
+<input
+id="password"
+type="password"
+placeholder="Password"
+style="width:100%;padding:12px;margin-bottom:15px;"
+>
+
+<button
+onclick="login()"
+style="
+width:100%;
+padding:12px;
+background:#3b82f6;
+color:white;
+border:none;
+border-radius:8px;
+cursor:pointer;
+">
+Login
+</button>
+
+</div>
+</div>
 <body></body>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
@@ -916,6 +967,50 @@ function logout() {
     location.reload();
 
   }
+
+}
+function login(){
+
+  const user =
+    document.getElementById("username").value;
+
+  const pass =
+    document.getElementById("password").value;
+
+  if(
+    user === "admin" &&
+    pass === "AdminALH2"
+  ){
+
+    localStorage.setItem(
+      "loggedIn",
+      "true"
+    );
+
+    document.getElementById(
+      "loginModal"
+    ).style.display = "none";
+
+  }
+  else{
+
+    alert(
+      "Invalid credentials"
+    );
+
+  }
+
+}
+
+if(
+  localStorage.getItem(
+    "loggedIn"
+  ) !== "true"
+){
+
+  document.getElementById(
+    "loginModal"
+  ).style.display = "flex";
 
 }
 </script>
