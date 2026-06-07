@@ -54,7 +54,18 @@ cursor:pointer;
 ">
 Login
 </button>
-
+<div
+  id="loginError"
+  style="
+  color:#ef4444;
+  font-size:12px;
+  margin-top:12px;
+  display:none;
+  text-align:center;
+  "
+>
+Invalid username or password
+</div>
 </div>
 </div>
 <body></body>
@@ -1007,7 +1018,9 @@ function login(){
     "username",
     user
   );
-
+document.getElementById(
+  "loginError"
+).style.display = "none";
 
   document.getElementById(
     "dashboard"
@@ -1020,11 +1033,12 @@ function login(){
 }
   else{
 
-    alert(
-      "Invalid credentials"
-    );
+    document.getElementById(
+  "loginError"
+).style.display = "block";
 
   }
+  
 
 }
 
