@@ -1330,6 +1330,80 @@ SECTION 5
 </div>
 
 </div>
+function changeTheme(theme){
+
+  localStorage.setItem(
+    "theme",
+    theme
+  );
+
+  applyTheme();
+
+}
+
+function applyTheme(){
+
+  let theme =
+    localStorage.getItem("theme")
+    || "dark";
+
+  if(theme === "system"){
+
+    theme =
+      window.matchMedia(
+        "(prefers-color-scheme: dark)"
+      ).matches
+      ? "dark"
+      : "light";
+
+  }
+
+  if(theme === "light"){
+
+    document.documentElement.style.setProperty("--bg","#f5f8fc");
+    document.documentElement.style.setProperty("--bg2","#ffffff");
+    document.documentElement.style.setProperty("--bg3","#eaf3ff");
+    document.documentElement.style.setProperty("--bg4","#dbeafe");
+
+    document.documentElement.style.setProperty("--text","#1e293b");
+    document.documentElement.style.setProperty("--text2","#475569");
+
+  }else{
+
+    document.documentElement.style.setProperty("--bg","#10151f");
+    document.documentElement.style.setProperty("--bg2","#161d2b");
+    document.documentElement.style.setProperty("--bg3","#1d2535");
+    document.documentElement.style.setProperty("--bg4","#252f42");
+
+    document.documentElement.style.setProperty("--text","#e8eaf0");
+    document.documentElement.style.setProperty("--text2","#9ca3af");
+
+  }
+
+}
+
+applyTheme();
+
+document.addEventListener(
+  "DOMContentLoaded",
+  function(){
+
+    const selector =
+      document.getElementById(
+        "themeSelect"
+      );
+
+    if(selector){
+
+      selector.value =
+        localStorage.getItem(
+          "theme"
+        ) || "dark";
+
+    }
+
+  }
+);
 }
 
 </script>
